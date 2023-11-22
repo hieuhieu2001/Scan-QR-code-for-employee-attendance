@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.myapplication.R
 
-class Adapter_items (context: Context, resource: Int, objects: List<items>) :
+class Adapter_items(context: Context, resource: Int, objects: List<items>) :
     ArrayAdapter<items>(context, resource, objects) {
 
 

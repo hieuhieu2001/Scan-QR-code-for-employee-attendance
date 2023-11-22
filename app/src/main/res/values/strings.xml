@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="nv01">NV01</string>
+    <string name="dao_ngoc_canh">Dao Ngoc Canh</string>
+    <string name="vang_mat">Vang Mat</string>
 </resources>

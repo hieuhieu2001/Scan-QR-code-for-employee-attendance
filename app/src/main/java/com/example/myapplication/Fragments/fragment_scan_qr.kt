@@ -35,7 +35,7 @@ class fragment_scan_qr : Fragment() {
         val view = inflater.inflate(R.layout.fragment_scan_qr, container, false)
         //   if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
         //      ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.CAMERA), 100)
-            //  }
+        //  }
         // Kiểm tra quyền CAMERA và yêu cầu quyền nếu chưa được cấp
         db = FirebaseFirestore.getInstance()
         if (checkCameraPermission()) {
@@ -46,12 +46,22 @@ class fragment_scan_qr : Fragment() {
         return view
 
     }
+
     private fun initializeCamera() {
-        barcodeDetector = BarcodeDetector.Builder(requireContext()).setBarcodeFormats(Barcode.QR_CODE).build()
-        cameraSource = CameraSource.Builder(requireContext(), barcodeDetector).setAutoFocusEnabled(true).build()
+        barcodeDetector =
+            BarcodeDetector.Builder(requireContext()).setBarcodeFormats(Barcode.QR_CODE).build()
+        cameraSource =
+            CameraSource.Builder(requireContext(), barcodeDetector).setAutoFocusEnabled(true)
+                .build()
 
         cameraPreview.holder.addCallback(object : SurfaceHolder.Callback {
-            override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {}
+            override fun surfaceChanged(
+                holder: SurfaceHolder,
+                format: Int,
+                width: Int,
+                height: Int
+            ) {
+            }
 
             override fun surfaceCreated(holder: SurfaceHolder) {
                 startCameraPreview()
@@ -77,7 +87,8 @@ class fragment_scan_qr : Fragment() {
                             startActivity(intent)
 
                         } else {
-                            Toast.makeText(requireContext(), "Mã không hợp lệ", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "Mã không hợp lệ", Toast.LENGTH_SHORT)
+                                .show()
                             requireActivity().finish()
                         }
                     }
@@ -85,9 +96,14 @@ class fragment_scan_qr : Fragment() {
             }
         })
     }
+
     private fun startCameraPreview() {
         try {
-            if (ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    android.Manifest.permission.CAMERA
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
                 return
             }
             cameraSource.start(cameraPreview.holder)
@@ -95,6 +111,7 @@ class fragment_scan_qr : Fragment() {
             e.printStackTrace()
         }
     }
+
     private fun stopCameraPreview() {
         cameraSource.stop()
     }
@@ -104,14 +121,18 @@ class fragment_scan_qr : Fragment() {
     }
 
 
-
     private fun checkCameraPermission(): Boolean {
-        val cameraPermission = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
+        val cameraPermission =
+            ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
         return cameraPermission == PackageManager.PERMISSION_GRANTED
     }
 
     private fun requestCameraPermission() {
-        ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), 100)
+        ActivityCompat.requestPermissions(
+            requireActivity(),
+            arrayOf(Manifest.permission.CAMERA),
+            100
+        )
     }
 
 }

@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class tabbar_adapter(fr:FragmentActivity) : FragmentStateAdapter(fr) {
+class tabbar_adapter(fr: FragmentActivity) : FragmentStateAdapter(fr) {
 
     override fun getItemCount(): Int = 4
     override fun createFragment(position: Int): Fragment {

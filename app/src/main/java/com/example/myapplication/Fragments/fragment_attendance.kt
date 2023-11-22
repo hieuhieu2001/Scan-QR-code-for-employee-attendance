@@ -17,14 +17,15 @@ import com.example.myapplication.Search.items
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Calendar
 
-class fragment_attendance: Fragment() {
+class fragment_attendance : Fragment() {
 
-    private val db: FirebaseFirestore = FirebaseFirestore.getInstance() // Khởi tạo Firebase Firestore
-    private lateinit var txtDate : TextView
-    private lateinit var lst : ListView
-    private lateinit var datee : ImageView
+    private val db: FirebaseFirestore =
+        FirebaseFirestore.getInstance() // Khởi tạo Firebase Firestore
+    private lateinit var txtDate: TextView
+    private lateinit var lst: ListView
+    private lateinit var datee: ImageView
 
-    private var dateee123 : String = ""
+    private var dateee123: String = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,7 +36,7 @@ class fragment_attendance: Fragment() {
         lst = view.findViewById(R.id.lst_e)
         datee = view.findViewById(R.id.imageView12)
 
-        datee.setOnClickListener(){showDatePickerDialog()}
+        datee.setOnClickListener() { showDatePickerDialog() }
 
 
 
@@ -59,9 +60,6 @@ class fragment_attendance: Fragment() {
                 handleDateSelection(selectedYear, selectedMonth, selectedDayOfMonth)
 
 
-
-
-
             },
             year, month, dayOfMonth
         )
@@ -69,6 +67,7 @@ class fragment_attendance: Fragment() {
         // Hiển thị DatePickerDialog
         datePickerDialog.show()
     }
+
     private fun handleDateSelection(year: Int, month: Int, dayOfMonth: Int) {
         // Xử lý dữ liệu ngày tháng
         var selectedDate = "$dayOfMonth-${month + 1}-$year"

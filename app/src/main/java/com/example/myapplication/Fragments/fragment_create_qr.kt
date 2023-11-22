@@ -29,13 +29,14 @@ import java.io.ByteArrayOutputStream
 import java.util.Calendar
 
 
-class fragment_create_qr: Fragment() {
-    private lateinit var created : Button
-    private  lateinit var edtID: EditText
+class fragment_create_qr : Fragment() {
+    private lateinit var created: Button
+    private lateinit var edtID: EditText
     private lateinit var edtName: EditText
-    private  lateinit var edtDate: EditText
-    private lateinit var qrCodeImageView : ImageView
-    private val db: FirebaseFirestore = FirebaseFirestore.getInstance() // Khởi tạo Firebase Firestore
+    private lateinit var edtDate: EditText
+    private lateinit var qrCodeImageView: ImageView
+    private val db: FirebaseFirestore =
+        FirebaseFirestore.getInstance() // Khởi tạo Firebase Firestore
     private lateinit var qrCodeString: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,7 +69,11 @@ class fragment_create_qr: Fragment() {
 
                             // Kiểm tra nếu tài liệu đã tồn tại
                             if (document.exists()) {
-                                Toast.makeText(requireContext(), "Đã tồn tại mã nhân viên", Toast.LENGTH_LONG).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Đã tồn tại mã nhân viên",
+                                    Toast.LENGTH_LONG
+                                ).show()
                             } else {
                                 // Tài liệu không tồn tại, thực hiện thêm dữ liệu
                                 val data = hashMapOf(
@@ -77,28 +82,46 @@ class fragment_create_qr: Fragment() {
                                     "dataQR" to qrCodeString
                                 )
 
-                                db.collection("NhanVien").document(maNV).set(data).addOnCompleteListener { task ->
-                                    if (task.isSuccessful) {
-                                        // Xử lý khi dữ liệu được thêm thành công
-                                        Toast.makeText(requireContext(), "Đã thêm dữ liệu thành công", Toast.LENGTH_SHORT).show()
-                                    } else {
-                                        // Xử lý khi có lỗi xảy ra
-                                        Toast.makeText(requireContext(), "Lỗi khi thêm: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                                db.collection("NhanVien").document(maNV).set(data)
+                                    .addOnCompleteListener { task ->
+                                        if (task.isSuccessful) {
+                                            // Xử lý khi dữ liệu được thêm thành công
+                                            Toast.makeText(
+                                                requireContext(),
+                                                "Đã thêm dữ liệu thành công",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        } else {
+                                            // Xử lý khi có lỗi xảy ra
+                                            Toast.makeText(
+                                                requireContext(),
+                                                "Lỗi khi thêm: ${task.exception?.message}",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
                                     }
-                                }
                             }
                         } catch (e: Exception) {
                             // Xử lý khi có lỗi xảy ra
-                            Toast.makeText(requireContext(), "Lỗi khi thêm: ${e.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "Lỗi khi thêm: ${e.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
 
 
                 } else {
-                    Toast.makeText(requireContext(), "Lỗi khi tạo QRCode", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Lỗi khi tạo QRCode", Toast.LENGTH_SHORT)
+                        .show()
                 }
             } else {
-                Toast.makeText(requireContext(), "Điền đầy đủ các trường dữ liệu", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Điền đầy đủ các trường dữ liệu",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 
@@ -111,10 +134,17 @@ class fragment_create_qr: Fragment() {
     private fun generateQRCode(data: String, width: Int, height: Int): Bitmap? {
         val qrCodeWriter: Writer = QRCodeWriter() //tao doi tuong trong thu vien de tao ma QR
         return try { //thu
-            val bitMatrix: BitMatrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, width, height) // ma hoa du lieu da thanh qrcode voi chieu dai + chieu rong mac dinh
+            val bitMatrix: BitMatrix = qrCodeWriter.encode(
+                data,
+                BarcodeFormat.QR_CODE,
+                width,
+                height
+            ) // ma hoa du lieu da thanh qrcode voi chieu dai + chieu rong mac dinh
             val bitMatrixWidth: Int = bitMatrix.width // lay chieu dai
-            val bitMatrixHeight: Int = bitMatrix.height // lay chieu rong duoi dang  ma trận  BitMatrix
-            val pixels = IntArray(bitMatrixWidth * bitMatrixHeight) // de luu tru mau sac tung mang anh trong QR
+            val bitMatrixHeight: Int =
+                bitMatrix.height // lay chieu rong duoi dang  ma trận  BitMatrix
+            val pixels =
+                IntArray(bitMatrixWidth * bitMatrixHeight) // de luu tru mau sac tung mang anh trong QR
             for (y in 0 until bitMatrixHeight) { // dung vong lap for de duyet qua tung diem anh
                 for (x in 0 until bitMatrixWidth) {
                     pixels[y * bitMatrixWidth + x] = if (bitMatrix[x, y]) {
@@ -124,7 +154,17 @@ class fragment_create_qr: Fragment() {
                     }
                 }
             }
-            Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_8888).apply { setPixels(pixels, 0, bitMatrixWidth, 0, 0, bitMatrixWidth, bitMatrixHeight) }
+            Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_8888).apply {
+                setPixels(
+                    pixels,
+                    0,
+                    bitMatrixWidth,
+                    0,
+                    0,
+                    bitMatrixWidth,
+                    bitMatrixHeight
+                )
+            }
         } catch (e: WriterException) {
             e.printStackTrace()
             null
