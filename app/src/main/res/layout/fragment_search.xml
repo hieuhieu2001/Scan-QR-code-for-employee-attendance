@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Profile Employee"
+        android:text="@string/profile_employee"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="428dp"
         android:text="ID"
-        android:textSize="15dp"
+        android:textSize="@dimen/_15ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -80,8 +80,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="376dp"
-        android:text="Nguyễn Văn A"
-        android:textSize="15dp"
+        android:text="@string/nguyen_van_a"
+        android:textSize="@dimen/_15ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -91,8 +91,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="324dp"
-        android:text="24/10/2001"
-        android:textSize="15dp"
+        android:text="@string/_24_10_2001"
+        android:textSize="@dimen/_15ssp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

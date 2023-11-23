@@ -19,18 +19,17 @@ class Home : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-          setContentView(R.layout.activity_home)
-          anhxa()
-         setUpViewPager(fragment_create_qr())
+        setContentView(R.layout.activity_home)
+        anhxa()
+        setUpViewPager(fragment_create_qr())
         navigationView.setOnItemSelectedListener {
-            when(it.itemId)
-            {
+            when (it.itemId) {
                 R.id.homee -> setUpViewPager(fragment_create_qr())
                 R.id.gearr -> setUpViewPager(fragment_scan_qr())
                 R.id.setting -> setUpViewPager(fragment_attendance())
                 R.id.search -> setUpViewPager(fragment_searcg())
 
-                else ->{
+                else -> {
                 }
             }
 
@@ -39,12 +38,14 @@ class Home : AppCompatActivity() {
         }
 
     }
-    private fun setUpViewPager(fragment : Fragment) {
+
+    private fun setUpViewPager(fragment: Fragment) {
         val fragmentManager = supportFragmentManager;
-        val fragemtTransaction =  fragmentManager.beginTransaction()
+        val fragemtTransaction = fragmentManager.beginTransaction()
         fragemtTransaction.replace(R.id.framee_layout, fragment)
         fragemtTransaction.commit()
     }
+
     private fun anhxa() {
         navigationView = findViewById(R.id.bottombar)
     }

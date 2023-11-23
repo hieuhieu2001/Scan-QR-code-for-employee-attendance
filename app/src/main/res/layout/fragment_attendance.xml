@@ -38,9 +38,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="15"
-            android:text="Attendance list"
+            android:text="@string/attendance_list"
             android:textAlignment="center"
-            android:textSize="33dp" />
+            android:textSize="@dimen/_33ssp" />
 
 
     </LinearLayout>
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="20dp"
+        android:textSize="@dimen/_20ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />

@@ -15,6 +15,10 @@
 
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
+    <meta-data
+        android:name="com.google.android.gms.vision.DEPENDENCIES"
+        android:value="barcode"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -25,9 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
-        <activity
-            android:name=".fragment_search"
-            android:exported="false" />
+
         <activity
             android:name=".Activity.Home"
             android:exported="false" />

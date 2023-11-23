@@ -16,17 +16,18 @@ import androidx.fragment.app.Fragment
 import com.example.myapplication.R
 import com.google.firebase.firestore.FirebaseFirestore
 
-class fragment_searcg: Fragment() {
+class fragment_searcg : Fragment() {
 
-    private  lateinit var edtID2: EditText
-    private  lateinit var txtID2: TextView
+    private lateinit var edtID2: EditText
+    private lateinit var txtID2: TextView
 
     private lateinit var txtName2: TextView
-    private  lateinit var txtDate2: TextView
-    private lateinit var qrCodeImageView2 : ImageView
-    private lateinit var search : ImageView
+    private lateinit var txtDate2: TextView
+    private lateinit var qrCodeImageView2: ImageView
+    private lateinit var search: ImageView
 
-    private val db: FirebaseFirestore = FirebaseFirestore.getInstance() // Khởi tạo Firebase Firestore
+    private val db: FirebaseFirestore =
+        FirebaseFirestore.getInstance() // Khởi tạo Firebase Firestore
     private lateinit var MaNV: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,48 +57,53 @@ class fragment_searcg: Fragment() {
             val docRef = db.collection("NhanVien").document(MaNV)
 
             docRef.get().addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val document = task.result
-                        if (document!!.exists()) {
+                if (task.isSuccessful) {
+                    val document = task.result
+                    if (document!!.exists()) {
 
-                            txtID2.text = "ID: $MaNV"
+                        txtID2.text = "ID: $MaNV"
 
-                            val ngaySinh = document.getString("ngaySinh")
-                            val hoTen = document.getString("hoTen")
-                            val qrCode = document.getString("dataQR")
-                            if (hoTen != null) {
-                                // Thực hiện xử lý với hoTen
-                                txtName2.text = "Name: $hoTen"
-                            }
-
-                            if (ngaySinh != null) {
-                                // Thực hiện xử lý với ngaySinh
-                                txtDate2.text = "Date: $ngaySinh"
-                            }
-
-                            if (qrCode != null) {
-                                val qrBit = convertBase64ToBitmap(qrCode)
-                                search.setImageBitmap(qrBit)
-                            }
-                            // ID đã tồn tại trong collection
-                            // Thực hiện xử lý tương ứng
-
-                        } else {
-                            // ID không tồn tại trong collection
-                            // Thực hiện xử lý tương ứng
-                            Toast.makeText(requireContext(), "Không tồn tại mã nhân viên", Toast.LENGTH_SHORT).show()
+                        val ngaySinh = document.getString("ngaySinh")
+                        val hoTen = document.getString("hoTen")
+                        val qrCode = document.getString("dataQR")
+                        if (hoTen != null) {
+                            // Thực hiện xử lý với hoTen
+                            txtName2.text = "Name: $hoTen"
                         }
+
+                        if (ngaySinh != null) {
+                            // Thực hiện xử lý với ngaySinh
+                            txtDate2.text = "Date: $ngaySinh"
+                        }
+
+                        if (qrCode != null) {
+                            val qrBit = convertBase64ToBitmap(qrCode)
+                            search.setImageBitmap(qrBit)
+                        }
+                        // ID đã tồn tại trong collection
+                        // Thực hiện xử lý tương ứng
+
                     } else {
-                        // Xử lý khi có lỗi xảy ra
-                        Toast.makeText(requireContext(), "Lỗi", Toast.LENGTH_SHORT).show()
+                        // ID không tồn tại trong collection
+                        // Thực hiện xử lý tương ứng
+                        Toast.makeText(
+                            requireContext(),
+                            "Không tồn tại mã nhân viên",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
+                } else {
+                    // Xử lý khi có lỗi xảy ra
+                    Toast.makeText(requireContext(), "Lỗi", Toast.LENGTH_SHORT).show()
                 }
+            }
 
         }
 
 
         return view
     }
+
     fun convertBase64ToBitmap(base64String: String?): Bitmap? {
         if (base64String == null || base64String.isEmpty()) {
             return null

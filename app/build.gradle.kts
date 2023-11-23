@@ -2,7 +2,9 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
+
 }
+
 
 android {
     namespace = "com.example.myapplication"
@@ -31,6 +33,8 @@ android {
     buildFeatures{
         viewBinding = true
     }
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -38,7 +42,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
 }
+
 
 dependencies {
 
@@ -56,6 +62,7 @@ dependencies {
     implementation ("com.google.android.gms:play-services-vision:20.1.3")
     implementation ("com.intuit.ssp:ssp-android:1.1.0")
     implementation ("com.intuit.sdp:sdp-android:1.1.0")
+
 
 
 }

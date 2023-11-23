@@ -3,4 +3,18 @@
     <string name="nv01">NV01</string>
     <string name="dao_ngoc_canh">Dao Ngoc Canh</string>
     <string name="vang_mat">Vang Mat</string>
+    <string name="app">App</string>
+    <string name="welcome">Welcome</string>
+    <string name="to">To</string>
+    <string name="_12_24">12:24</string>
+    <string name="_17_12_2023">17 - 12 - 2023</string>
+    <string name="attendance_list">Attendance list</string>
+    <string name="date">Date</string>
+    <string name="datee">Date</string>
+    <string name="name">Name</string>
+    <string name="created">Created</string>
+    <string name="id">ID</string>
+    <string name="profile_employee">Profile Employee</string>
+    <string name="nguyen_van_a">Nguyen Van A</string>
+    <string name="_24_10_2001">24/10/2001</string>
 </resources>
