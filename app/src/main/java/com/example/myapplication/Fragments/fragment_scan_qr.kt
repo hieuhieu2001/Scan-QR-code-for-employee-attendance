@@ -33,6 +33,8 @@ class fragment_scan_qr : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_scan_qr, container, false)
+        cameraPreview = view.findViewById<SurfaceView>(R.id.camera_preview)
+
         //   if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
         //      ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.CAMERA), 100)
         //  }
